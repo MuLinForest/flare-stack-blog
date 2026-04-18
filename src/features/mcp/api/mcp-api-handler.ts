@@ -1,10 +1,6 @@
 import { WorkerEntrypoint } from "cloudflare:workers";
 import { createMcpHandler } from "agents/mcp";
-import {
-  createOAuthPrincipalFromProps,
-  extractBearerToken,
-} from "@/features/oauth-provider/service/oauth-provider.service";
-import { OAUTH_DEFAULT_CLIENT_SCOPES } from "@/features/oauth-provider/oauth-provider.shared";
+import { createOAuthPrincipalFromProps } from "@/features/oauth-provider/service/oauth-provider.service";
 import { getDb } from "@/lib/db";
 import { createMcpServer } from "../service/mcp.server";
 import {
@@ -27,18 +23,7 @@ export class McpApiHandler extends WorkerEntrypoint<Env> {
     }
 
     const executionCtx = this.ctx as ExecutionContext;
-    let authProps = getOAuthProps(executionCtx);
-
-    // API Key bypass: if Bearer token matches MCP_API_KEY env var, skip OAuth
-    const bearerToken = extractBearerToken(request.headers.get("authorization"));
-    if (bearerToken && this.env.MCP_API_KEY && bearerToken === this.env.MCP_API_KEY) {
-      authProps = {
-        clientId: "mcp-api-key",
-        scopes: OAUTH_DEFAULT_CLIENT_SCOPES,
-        subject: "api-key-user",
-      };
-    }
-
+    const authProps = getOAuthProps(executionCtx);
     const db = getDb(this.env);
     const server = await createMcpServer({
       db,
