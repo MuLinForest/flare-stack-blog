@@ -44,6 +44,7 @@ declare global {
   }
 
   interface Env extends Cloudflare.Env {
+    MCP_API_KEY?: string;
     POST_PROCESS_WORKFLOW: Workflow<PostProcessWorkflowParams>;
     POST_AUTO_SNAPSHOT_WORKFLOW: Workflow<PostAutoSnapshotWorkflowParams>;
     COMMENT_MODERATION_WORKFLOW: Workflow<CommentModerationWorkflowParams>;
