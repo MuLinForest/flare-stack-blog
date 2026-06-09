@@ -7,7 +7,7 @@ concurrency:
 on:
   push:
     branches:
-      - main
+      - custom
     paths-ignore:
       - "**.md"
       - ".agent/**"
