@@ -214,7 +214,7 @@ export class ImportWorkflow extends WorkflowEntrypoint<
 
   private async fetchZipFiles(
     r2Key: string,
-    locale: "zh" | "en",
+    locale: "zh" | "zh-Hant" | "en",
   ): Promise<Record<string, Uint8Array>> {
     const r2Object = await this.env.R2.get(r2Key);
     if (!r2Object) {

@@ -1,5 +1,6 @@
 import { ChevronDown, Languages } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
+import type { Locale } from "@/lib/i18n";
 import { m } from "@/paraglide/messages";
 import { getLocale, setLocale } from "@/paraglide/runtime";
 
@@ -9,7 +10,7 @@ export function LanguageSwitcher({ className = "" }: { className?: string }) {
 
   const currentLocale = getLocale();
 
-  const handleLanguageChange = (locale: "zh" | "en") => {
+  const handleLanguageChange = (locale: Locale) => {
     setLocale(locale);
   };
 
@@ -49,7 +50,7 @@ export function LanguageSwitcher({ className = "" }: { className?: string }) {
       </button>
 
       {isOpen && (
-        <div className="absolute top-full right-0 mt-2 w-32 bg-popover border border-border/30 z-50 py-1 animate-in fade-in zoom-in-95 duration-200 rounded-md shadow-lg overflow-hidden">
+        <div className="absolute top-full right-0 mt-2 w-36 bg-popover border border-border/30 z-50 py-1 animate-in fade-in zoom-in-95 duration-200 rounded-md shadow-lg overflow-hidden">
           <button
             onClick={() => handleLanguageChange("zh")}
             className={`w-full text-left px-4 py-2 text-sm transition-colors ${
@@ -58,7 +59,17 @@ export function LanguageSwitcher({ className = "" }: { className?: string }) {
                 : "text-muted-foreground hover:text-foreground hover:bg-accent/30"
             }`}
           >
-            中文
+            简体中文
+          </button>
+          <button
+            onClick={() => handleLanguageChange("zh-Hant")}
+            className={`w-full text-left px-4 py-2 text-sm transition-colors ${
+              currentLocale === "zh-Hant"
+                ? "text-foreground bg-accent/50 font-medium"
+                : "text-muted-foreground hover:text-foreground hover:bg-accent/30"
+            }`}
+          >
+            繁體中文
           </button>
           <button
             onClick={() => handleLanguageChange("en")}

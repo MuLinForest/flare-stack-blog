@@ -33,14 +33,14 @@ declare global {
     taskId: string;
     postIds?: Array<number>;
     status?: "draft" | "published";
-    locale?: "zh" | "en";
+    locale?: "zh" | "zh-Hant" | "en";
   }
 
   interface ImportWorkflowParams {
     taskId: string;
     r2Key: string;
     mode: "native" | "markdown";
-    locale?: "zh" | "en";
+    locale?: "zh" | "zh-Hant" | "en";
   }
 
   interface Env extends Cloudflare.Env {
