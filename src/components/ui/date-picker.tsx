@@ -26,7 +26,7 @@ const DatePicker: React.FC<DatePickerProps> = ({
   const initialDate = value ? new Date(value) : new Date();
   const [viewDate, setViewDate] = useState(initialDate);
   const locale = getLocale();
-  const localeTag = locale === "zh" ? "zh-CN" : "en-US";
+  const localeTag = locale === "zh" ? "zh-CN" : locale === "zh-Hant" ? "zh-TW" : "en-US";
 
   const daysOfWeek = Array.from({ length: 7 }, (_, index) =>
     new Intl.DateTimeFormat(localeTag, { weekday: "narrow" }).format(

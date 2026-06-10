@@ -7,7 +7,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const projectRoot = path.resolve(__dirname, "..");
 const messagesDir = path.join(projectRoot, "messages");
-const localeFiles = ["en.json", "zh.json"] as const;
+const localeFiles = ["en.json", "zh.json", "zh-Hant.json"] as const;
 const scanRoots = ["src", "scripts", "tests"] as const;
 const supportedExtensions = new Set([
   ".ts",

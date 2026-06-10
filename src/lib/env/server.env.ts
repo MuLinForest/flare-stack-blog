@@ -1,7 +1,7 @@
 import { z } from "zod";
 
 const domainRegex = /^([a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?\.)+[a-z]{2,}$/i;
-const localeSchema = z.enum(["zh", "en"]);
+const localeSchema = z.enum(["zh", "zh-Hant", "en"]);
 const domainSchema = z
   .string()
   .regex(domainRegex, "Must be a valid domain (e.g., www.example.com)");
